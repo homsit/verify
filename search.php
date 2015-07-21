@@ -17,7 +17,7 @@
 		ini_set('default_charset','UTF-8'); 
 		$dbhost = 'localhost';
 		$dbuser = 'root';
-		$dbpass = 'root';
+		$dbpass = 'mma';
 		$dbname = 'tqadb';
 		
 		echo "<tr><td bgcolor='#DDDDD6' colspan='2'>البحث عن: ".$_POST["find"]."</td></tr>";
@@ -54,6 +54,6 @@
 		mysql_close($conn);
 		?>
 	</table>
-	<a href="index.html">عودة إلى الخلف</a>
+	<a href="index2.html">عودة إلى الخلف</a>
 </body>
 </html>
