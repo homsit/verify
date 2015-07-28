@@ -32,6 +32,15 @@
 		if(! $question_retval ){die('Could not get data: ' . mysql_error());}
 		if(mysql_num_rows($question_retval)==0){
 			echo "<tr><td bgcolor='#DDDDD6'><u>النص</u></td><td bgcolor='#F5F5F5'> هذا النص غير موجود في قاعدة البيانات</td></tr>";
+			$insrt_sql = 'INSERT INTO qa_posts '.
+						'		(postid, type, parentid, categoryid, catidpath1, catidpath2, catidpath3, acount, amaxvote, 	selchildid, closedbyid, userid, cookieid, createip, lastuserid, lastip, upvotes, downvotes, netvotes, lastviewip, views, hotness, flagcount,format, created, updated, updatetype, title, content, tags, name, notify) '.
+						' VALUES (NULL, "Q", NULL, NULL, NULL, NULL, NULL, 0, 0, NULL, NULL, NULL, NULL, NULL, NULL, NULL, 0, 0, 0, NULL, 1, NULL, 0, "html", "2015-07-08 02:32:39", NULL, NULL, "ما صحة ما يليل", "'.$_POST["find"].'", NULL, NULL, NULL)';
+			$rslt=mysql_query( $insrt_sql, $conn );
+			if ($rslt) {
+    			echo "<tr><td bgcolor='#DDDDD6' colspan='2'>تمت إضافة النص كسؤال</td><tr>";
+			} else {
+				echo "<tr><td bgcolor='#DDDDD6' colspan='2'>خطأ</td><tr>";
+			}
 		}else{
 			while($question_row = mysql_fetch_array($question_retval, MYSQL_ASSOC)){
 			    echo "<tr><td bgcolor='#DDDDD6'><u>النص</u></td><td bgcolor='#F5F5F5'>{$question_row['content']} </td></tr> ";
@@ -51,9 +60,12 @@
 				echo "<tr><td colspan='2'><hr></td></tr>";
 			} 
 		}
+		
+		echo "<tr><td><a href='index2.html'>عودة إلى الخلف</a></td></tr>";
 		mysql_close($conn);
 		?>
+		
 	</table>
-	<a href="index2.html">عودة إلى الخلف</a>
+	
 </body>
 </html>
